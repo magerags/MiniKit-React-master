@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "./kitman_logo.png";
 import "./App.css";
-import axios from "axios";
+import { athletesData } from "./athletes";
 
 // Given more time I would:
 // -- have put this into a few different components.
@@ -13,18 +13,18 @@ function App() {
   const [athletes, setAthletes] = useState([]);
   const [groupByKey, setGroupByKey] = useState("country");
 
-  const getData = async () => {
-    try {
-      await axios
-        .get("http://localhost:5001/api/athletes")
-        .then((res) => setAthletes(res.data));
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     await axios
+  //       .get("http://localhost:5001/api/athletes")
+  //       .then((res) => setAthletes(res.data));
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
   useEffect(() => {
-    getData();
+    setAthletes(athletesData);
   }, []);
 
   function groupBy(array, key) {
